@@ -1,22 +1,8 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'app_site/css/style.css' %}">
-    <title>Página sobre</title>
-</head>
-<body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/sobre">Sobre</a></li>
-            </ul>
-        </nav>
-    </header>
+{% extends "app_site/base.html" %}
+
+{% block titulo %}Página sobre{% endblock titulo %}
+
+{% block conteudo %}
     <h1>Página sobre</h1>
     <p>Minha página sobre</p>
-</body>
-</html>
+{% endblock conteudo %}
