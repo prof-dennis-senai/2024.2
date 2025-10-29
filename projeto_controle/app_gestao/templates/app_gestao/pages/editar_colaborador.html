@@ -1,0 +1,35 @@
+{% extends "global/base.html" %}
+
+{% block content %}
+
+<div class="container-lg mt-3">
+    <h1>Editar Colaborador</h1>
+    <form method="post" action="{% url 'colaboradores:editar_colaborador' colaborador.id %}">
+        {% csrf_token %}
+        <div>
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" value="{{ colaborador.nome }}" required>
+        </div>
+        <div>
+            <label for="cpf">CPF:</label>
+            <input type="text" id="cpf" name="cpf" value="{{ colaborador.cpf_formatado }}" required>
+        </div>
+        <div>
+            <label for="ativo">Ativo:</label>
+            <input type="checkbox" id="ativo" name="ativo" value="True" {% if colaborador.ativo %} checked {% endif %}>
+        </div>
+        <div>
+            <label for="eh_terceiro">Tipo Funcionário</label>
+            <select name="eh_terceiro" id="eh-terceiro">
+                <option value="True" {% if colaborador.eh_terceiro %} selected {% endif %}>Terceiro</option>
+                <option value="False" {% if not colaborador.eh_terceiro %} selected {% endif %}>Próprio</option>
+            </select>
+        </div>
+        <div>
+            <label for="cargo">Cargo:</label>
+            <input type="text" id="cargo" name="cargo" value="{{ colaborador.cargo }}" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Editar</button>
+    </form>
+</div>
+{% endblock content %}

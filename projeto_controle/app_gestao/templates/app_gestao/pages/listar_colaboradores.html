@@ -1,5 +1,59 @@
 {% extends "global/base.html" %}
 
 {% block content %}
-    <h1>Colaboradores</h1>
+    <div class="container-lg mt-3">
+        <h1>Listagem de Colaboradores</h1>
+
+        <div class="mb-3 d-flex justify-content-between">
+            <form>
+                <div class="d-flex gap-1">
+                    <input type="text" placeholder="Pesquisar Nome" name="nome" value="{{ pesquisa }}">
+                    <div> 
+                        <button type="submit" class="btn btn-primary"> <i class="bi bi-search"></i> Pesquisar</button>
+                        {% if pesquisa %}
+                            <a href="{% url 'colaboradores:listar_colaboradores' %}"> <i class="bi bi-x"></i>Limpar Pesquisa</a>
+                        {% endif %}
+                    </div>
+                </div>
+                
+            </form>
+            <a class="btn btn-success" href="{% url 'colaboradores:cadastrar_colaborador' %}" class="btn btn-primary"><i class="bi bi-person-add"></i> | Novo Colaborador</a>
+        </div>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>CPF</th>
+                    <th>Ativo</th>
+                    <th>Tipo do Funcionário</th>
+                    <th>Cargo</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for colaborador in colaboradores %}
+                    <tr>
+                        <td>{{ colaborador.nome }}</td>
+                        <td>{{ colaborador.cpf_formatado }}</td>
+                        <td>{% if colaborador.ativo %}Sim{% else %}Não{% endif %}</td>
+                        <td>{{ colaborador.obtem_tipo_funcionario }}</td>
+                        <td>{{ colaborador.cargo }}</td>
+                        <td>
+                            <a href="{% url 'colaboradores:editar_colaborador' colaborador.id %}">Editar</a>
+                            <a href="{% url 'colaboradores:remover_colaborador' colaborador.id %}">Remover</a>
+                        </td>
+                    </tr>
+
+                {% empty %}
+                    <tr>
+                    
+                        <td colspan="6">Nenhum colaborador cadastrado. <a href="{% url 'colaboradores:cadastrar_colaborador' %}">Cadastrar</a></td>
+                    </tr>
+                    
+
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock content %}
