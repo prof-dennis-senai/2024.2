@@ -40,8 +40,8 @@
                         <td>{{ colaborador.obtem_tipo_funcionario }}</td>
                         <td>{{ colaborador.cargo }}</td>
                         <td>
-                            <a href="{% url 'colaboradores:editar_colaborador' colaborador.id %}">Editar</a>
-                            <a href="{% url 'colaboradores:remover_colaborador' colaborador.id %}">Remover</a>
+                            <a class="btn btn-primary" href="{% url 'colaboradores:editar_colaborador' colaborador.id %}">Editar</a>
+                            <button class="btn btn-danger" onclick="validarRemocao('{% url 'colaboradores:remover_colaborador' colaborador.id %}', 'Você realmente deseja remover o colaborador: {{ colaborador.nome }}?')")">Remover</a>
                         </td>
                     </tr>
 
