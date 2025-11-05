@@ -1,0 +1,35 @@
+{% extends "global/base.html" %}
+
+{% block content %}
+
+<div class="container-lg mt-3">
+    <h1>Editar Colaborador</h1>
+    <form method="post" action="{% url 'treinamentos:editar_treinamento' treinamento.id %}">
+        {% csrf_token %}
+        <div>
+            <label for="titulo">Título:</label>
+            <input type="text" id="titulo" name="titulo" required value="{{ treinamento.titulo }}">
+        </div>
+        <div>
+            <label for="descricao">Descrição:</label>
+            <input type="text" id="descricao" name="descricao" required value="{{ treinamento.descricao }}">
+        </div>
+        <div>
+            <label for="validade">Validade em Meses</label>
+            <select name="validade" id="validade">
+                <option value="3" {% if treinamento.validade_em_meses == 3 %} selected {% endif %}>3 meses</option>
+                <option value="6" {% if treinamento.validade_em_meses == 6 %} selected {% endif %}>6 meses</option>
+                <option value="12" {% if treinamento.validade_em_meses == 12 %} selected {% endif %}>12 meses</option>
+                <option value="18" {% if treinamento.validade_em_meses == 18 %} selected {% endif %}>18 meses</option>
+                <option value="24" {% if treinamento.validade_em_meses == 24 %} selected {% endif %}>24 meses</option>
+                <option value="36" {% if treinamento.validade_em_meses == 36 %} selected {% endif %}>36 meses</option>
+            </select>
+        </div>
+        <div>
+            <label for="quantidade_horas">Quantidade de Horas:</label>
+            <input type="text" id="quantidade_horas" name="quantidade_horas" required value="{{ treinamento.quantidade_horas }}">
+        </div>
+        <button type="submit" class="btn btn-primary">Editar</button>
+    </form>
+</div>
+{% endblock content %}

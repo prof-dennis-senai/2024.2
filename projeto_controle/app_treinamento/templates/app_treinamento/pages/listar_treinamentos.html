@@ -1,0 +1,57 @@
+{% extends "global/base.html" %}
+
+{% block content %}
+    <div class="container-lg mt-3">
+        <h1>Listagem de Treinamentos</h1>
+
+        <div class="mb-3 d-flex justify-content-between">
+            <form>
+                <div class="d-flex gap-1">
+                    <input type="text" placeholder="Pesquisar Nome" name="nome" value="{{ pesquisa }}">
+                    <div> 
+                        <button type="submit" class="btn btn-primary"> <i class="bi bi-search"></i> Pesquisar</button>
+                        {% if pesquisa %}
+                            <a href="{% url 'treinamentos:listar_treinamentos' %}"> <i class="bi bi-x"></i>Limpar Pesquisa</a>
+                        {% endif %}
+                    </div>
+                </div>
+                
+            </form>
+            <a class="btn btn-success" href="{% url 'treinamentos:cadastrar_treinamento' %}" class="btn btn-primary"><i class="bi bi-person-add"></i> | Novo Treinamento</a>
+        </div>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Título</th>
+                    <th>Descrição</th>
+                    <th>Validade</th>
+                    <th>Quantidade de Horas</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for treinamento in treinamentos %}
+                    <tr>
+                        <td>{{ treinamento.titulo }}</td>
+                        <td>{{ treinamento.descricao }}</td>
+                        <td>{{ treinamento.validade_formatada }}</td>
+                        <td>{{ treinamento.quantidade_horas_formatada }}</td>
+                        <td>
+                            <a class="btn btn-primary" href="{% url 'treinamentos:editar_treinamento' treinamento.id %}">Editar</a>
+                            <button class="btn btn-danger" onclick="validarRemocao('{% url 'treinamentos:remover_treinamento' treinamento.id %}', 'Você realmente deseja remover o treinamento: {{ treinamento.titulo }} - {{ treinamento.descricao }}?')")">Remover</a>
+                        </td>
+                    </tr>
+
+                {% empty %}
+                    <tr>
+                    
+                        <td colspan="6">Nenhum treinamento cadastrado. <a href="{% url 'treinamentos:cadastrar_treinamento' %}">Cadastrar</a></td>
+                    </tr>
+                    
+
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock content %}

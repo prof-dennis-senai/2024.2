@@ -1,0 +1,35 @@
+{% extends "global/base.html" %}
+
+{% block content %}
+
+<div class="container-lg mt-3">
+    <h1>Cadastrar Treinamento</h1>
+    <form method="post">
+        {% csrf_token %}
+        <div>
+            <label for="titulo">Título:</label>
+            <input type="text" id="titulo" name="titulo" required>
+        </div>
+        <div>
+            <label for="descricao">Descrição:</label>
+            <input type="text" id="descricao" name="descricao" required>
+        </div>
+        <div>
+            <label for="validade">Validade em Meses</label>
+            <select name="validade" id="validade">
+                <option value="3">3 meses</option>
+                <option value="6">6 meses</option>
+                <option value="12">12 meses</option>
+                <option value="18">18 meses</option>
+                <option value="24">24 meses</option>
+                <option value="36">36 meses</option>
+            </select>
+        </div>
+        <div>
+            <label for="quantidade_horas">Quantidade de Horas:</label>
+            <input type="text" id="quantidade_horas" name="quantidade_horas" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
+    </form>
+</div>
+{% endblock content %}
