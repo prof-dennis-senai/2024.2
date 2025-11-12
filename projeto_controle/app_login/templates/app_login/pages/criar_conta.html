@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+
+<body>
+    <form action="{% url 'accounts:criar_usuario' %}" method="post">
+        {% csrf_token %}
+        <div>
+            <label for="username">Usuário</label>
+            <input type="text" name="username" id="username">
+        </div>
+        <div>
+            <label for="password">Senha</label>
+            <input type="password" name="password" id="password">
+        </div>
+        <div>
+            <label for="password2">Confirme sua Senha</label>
+            <input type="password" name="password2" id="password2">
+        </div>
+        <div>
+            <label for="email">E-mail</label>
+            <input type="email" name="email" id="email">
+        </div>
+        <button type="submit">Entrar</button>
+    </form>
+
+    <script>
+        let password = document.getElementById('password')
+        let password2 = document.getElementById('password2')
+        password.addEventListener('input', () => {
+            if (password.value !== password2.value) {
+                password2.setCustomValidity('As senhas devem ser iguais')
+            } else {
+                password2.setCustomValidity('')
+            }
+        })
+    </script>
+</body>
+
+</html>

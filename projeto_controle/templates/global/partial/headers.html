@@ -1,0 +1,16 @@
+<header>
+    <nav>
+        <ul>
+            <li><a href="{% url 'treinamentos:listar_treinamentos' %}">Treinamentos</a></li>
+            <li><a href="{% url 'colaboradores:listar_colaboradores' %}">Colaboradores</a></li>
+        </ul>
+        <ul>
+            {% if request.user.is_authenticated %}
+                <li><a>{{ request.user.username }}</a></li>
+                <li><a href="{% url 'accounts:logout' %}">Sair</a></li>
+            {% else %}
+                <li><a href="{% url 'accounts:login' %}">Login</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+</header>

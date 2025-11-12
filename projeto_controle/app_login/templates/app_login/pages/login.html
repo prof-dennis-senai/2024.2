@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+
+<body>
+    <form action="{% url 'accounts:login' %}" method="post">
+        {% csrf_token %}
+        <div>
+
+            <label for="username">Usuário</label>
+            <input type="text" name="username" id="username">
+        </div>
+        <div>
+
+            <label for="password">Senha</label>
+            <input type="password" name="password" id="password">
+        </div>
+        <p><a href="#">Esqueci minha senha</a> | <a href="{% url 'accounts:criar_usuario' %}">Criar Conta</a></p>
+        <button type="submit">Entrar</button>
+    </form>
+</body>
+
+</html>

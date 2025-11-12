@@ -23,4 +23,5 @@ urlpatterns = [
     path('', lambda request: redirect('colaboradores/', permanent=False)),
     path('colaboradores/', include('app_gestao.urls')),
     path('treinamentos/', include('app_treinamento.urls')),
+    path('accounts/', include('app_login.urls')),
 ]
