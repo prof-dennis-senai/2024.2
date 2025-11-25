@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect
 from django.http import HttpRequest
 from .models import Treinamento, TreinamentoColaborador
+from utils.send_email_utils.bem_vindo.bem_vindo import enviar_email_bem_vindo_basico,enviar_email_bem_vindo_avancado
 
 # Create your views here.
 def listar_treinamentos(request: HttpRequest):
+    enviar_email_bem_vindo_avancado('caldana.gabriel@hotmail.com', 'Dennis')
     pesquisa = request.GET.get('titulo', '')
     if pesquisa:
         treinamentos = Treinamento.objects.filter(nome__icontains=pesquisa)
