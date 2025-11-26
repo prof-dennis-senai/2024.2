@@ -1,0 +1,42 @@
+{% extends "global/base.html" %}
+
+{% block content %}
+
+<div class="container-lg mt-3">
+    <h1>Cadastrar Treinamento</h1>
+    <form method="post">
+        {% csrf_token %}
+        <div>
+            <label for="titulo">Título:</label>
+            <input type="text" id="titulo" name="titulo" required>
+        </div>
+        <div>
+            <label for="descricao">Descrição:</label>
+            <input type="text" id="descricao" name="descricao" required>
+        </div>
+        <div>
+            <label for="colaborador">Colaborador</label>
+            <select name="colaborador" id="colaborador">
+                <option value="-1" selected>Selecione...</option>
+                {% for colaborador in colaboradores %}
+                    <option value="{colaborador.id}">{{ colaborador.nome }}</option>
+                {% empty %}
+                    <option value="-1" disabled>Nenhum colaborador cadastrado</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div>
+            <label for="curso">Curso</label>
+            <select name="curso" id="curso">
+                <option value="-1" selected>Selecione...</option>
+                {% for curso in cursos %}
+                    <option value="{curso.id}">{{ curso.titulo }}</option>
+                {% empty %}
+                    <option value="-1" disabled>Nenhum curso cadastrado</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
+    </form>
+</div>
+{% endblock content %}
