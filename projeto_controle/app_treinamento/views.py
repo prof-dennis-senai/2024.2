@@ -54,7 +54,7 @@ def listar_cursos(request: HttpRequest):
         cursos = TreinamentoColaborador.objects.all()
     return render(request, 'app_treinamento/pages/listar_cursos.html', {"treinamentos": cursos})
 
-def cadastrar_treinamento(request: HttpRequest):
+def cadastrar_cursos(request: HttpRequest):
     if request.method == 'POST':
         titulo = request.POST.get('titulo')
         descricao = request.POST.get('descricao')
